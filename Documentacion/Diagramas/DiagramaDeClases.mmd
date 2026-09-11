@@ -1,0 +1,44 @@
+
+
+classDiagram
+
+    Inventario -- ElementoInventario
+    Agenda -- Renta
+    Usuario_Gestor -- Inventario
+    Usuario_Gestor -- Agenda
+
+    class ElementoInventario{
+      - m_nombre : String
+      - m_categoria : enum
+      - m_cantidad : int
+      
+      + ReducirAlmacen(reduccion : int) void
+      + AumentarAlmacen( aumento : int) void
+    }
+
+    class Inventario{
+      - m_elementos : ArrayList Elemento
+      + AgregarElemento(nuevoElemento : Elemento) : void
+      + EliminarElemento(elementoEliminado : Elemento) : void
+      + ObtenerElemento(index : int) : Elemento
+    }
+
+    class Renta{
+      - m_direccion : Direccion
+      - m_elementosRentados : ArrayList Elemento
+      - m_contacto : String
+      - m_fecha : Date
+    }
+
+    class Agenda{
+      - m_rentas : ArrayList Renta
+      + AgregarRecordatorio(rentaNueva : Renta) void
+      + EliminarRecordatorio(rentaEliminada : Renta) void
+    }
+
+    class Usuario_Gestor{
+      + crearRenta() void
+      + eliminarRenta() void
+      + AgregarElemento() void
+      + EliminarElemento() void
+    }
