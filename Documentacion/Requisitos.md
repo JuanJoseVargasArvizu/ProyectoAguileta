@@ -28,7 +28,7 @@ Permite seleccionar un grupo de elementos de la lista del inventario, y otorgarl
 
 ## Agenda/Calendario
 ### RF - : La agenda permite visualizar las rentas en forma de un calendario o lista
-La agenda recibe la informacion de las rentas desde el gestor, y las representa como recordatorios en en forma de un calendario de recordatorios
+La agenda obtiene las rentas desde el gestor y las muestra en forma de calendario o lista
 
 &nbsp;
 

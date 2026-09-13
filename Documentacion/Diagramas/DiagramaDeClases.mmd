@@ -2,10 +2,54 @@
 
 classDiagram
 
-    Inventario -- ElementoInventario
-    Agenda -- Renta
+
+
+    InventarioService ..|> InventarioServiceImp : Implementa
+    InventarioController -- InventarioService
+    InventarioServiceImp -- Usuario_Gestor
+
+    AgendaService ..|> AgendaServiceImp : Implementa
+    AgendaController -- AgendaService
+    AgendaServiceImp -- Agenda
+    
     Usuario_Gestor -- Inventario
+    Inventario -- ElementoInventario
     Usuario_Gestor -- Agenda
+    Agenda -- Renta
+
+
+    class InventarioService{
+      <<Interfaz>>
+      + crearNuevoElemento(nuevoElemento : Elemento) void
+      + eliminarElemento(elementoEliminado : Elemento) void
+      + cambiarEstadoDeElemento(elementoCambiado : Elemento) void
+      + ReducirAlmacenDeElemento(elementoReducido : Elemento) void
+      + AumentarAlmacenDeElemento(elementoAumentado : Elemento) void
+    }
+
+    class AgendaService{
+      <<Interfaz>>
+      + ObtenerRentas() void
+      + AgregarRenta() void
+      + EliminarRenta() void
+    }
+
+    class InventarioServiceImp{
+      
+    }
+
+     class AgendaServiceImp{
+      
+    }
+
+
+    class InventarioController{
+
+    }
+
+    class AgendaController{
+
+    }
 
     class ElementoInventario{
       - m_nombre : String
