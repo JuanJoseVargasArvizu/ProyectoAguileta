@@ -3,35 +3,36 @@
 classDiagram
 
 
+    Inventario -- ElementoInventario
+    Agenda -- Renta
 
     InventarioService ..|> InventarioServiceImp : Implementa
     InventarioController -- InventarioService
-    InventarioServiceImp -- Usuario_Gestor
+    InventarioServiceImp -- Inventario
 
     AgendaService ..|> AgendaServiceImp : Implementa
     AgendaController -- AgendaService
     AgendaServiceImp -- Agenda
     
-    Usuario_Gestor -- Inventario
-    Inventario -- ElementoInventario
-    Usuario_Gestor -- Agenda
-    Agenda -- Renta
+    AgendaRepository 
+
 
 
     class InventarioService{
       <<Interfaz>>
+      + obtenerListaDeElementos(elementos : Elemento) ArrayList Elemento
       + crearNuevoElemento(nuevoElemento : Elemento) void
       + eliminarElemento(elementoEliminado : Elemento) void
       + cambiarEstadoDeElemento(elementoCambiado : Elemento) void
-      + ReducirAlmacenDeElemento(elementoReducido : Elemento) void
-      + AumentarAlmacenDeElemento(elementoAumentado : Elemento) void
+      + ReducirAlmacenDeElemento(elementoReducido : Elemento, cantidad : int) void
+      + AumentarAlmacenDeElemento(elementoAumentado : Elemento, cantidad : int) void
     }
 
     class AgendaService{
       <<Interfaz>>
-      + ObtenerRentas() void
-      + AgregarRenta() void
-      + EliminarRenta() void
+      + ObtenerRentas() ArrayList Renta
+      + AgregarRenta(RentaNueva : Renta) void
+      + EliminarRenta(RentaEliminada : Renta) void
     }
 
     class InventarioServiceImp{
@@ -44,7 +45,6 @@ classDiagram
 
 
     class InventarioController{
-
     }
 
     class AgendaController{
@@ -58,6 +58,8 @@ classDiagram
       
       + ReducirAlmacen(reduccion : int) void
       + AumentarAlmacen( aumento : int) void
+      + Getters()
+      + Setters()
     }
 
     class Inventario{
@@ -65,6 +67,8 @@ classDiagram
       + AgregarElemento(nuevoElemento : Elemento) : void
       + EliminarElemento(elementoEliminado : Elemento) : void
       + ObtenerElemento(index : int) : Elemento
+      + Getters()
+      + Setters()
     }
 
     class Renta{
@@ -72,17 +76,23 @@ classDiagram
       - m_elementosRentados : ArrayList Elemento
       - m_contacto : String
       - m_fecha : Date
+      + Getters()
+      + Setters()
     }
 
     class Agenda{
       - m_rentas : ArrayList Renta
       + AgregarRecordatorio(rentaNueva : Renta) void
       + EliminarRecordatorio(rentaEliminada : Renta) void
+            + Getters()
+      + Setters()
     }
 
-    class Usuario_Gestor{
-      + crearRenta() void
-      + eliminarRenta() void
-      + AgregarElemento() void
-      + EliminarElemento() void
+    class InventarioRepository{
+      <<Interfaz>>
+    }
+
+    class AgendaRepository{
+      <<Interfaz>>
+
     }
